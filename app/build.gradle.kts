@@ -1,5 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id("com.android.application")
+    id("com.google.gms.google-services")
+
 }
 
 android {
@@ -9,7 +11,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.myproject2"
+        applicationId = "com.example.MyProject2"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -31,6 +33,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -41,4 +46,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+
 }
