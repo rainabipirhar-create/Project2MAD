@@ -14,4 +14,19 @@
     </style>
 
     <style name="Theme.MyProject2" parent="Base.Theme.MyProject2" />
+
+        <!-- Base application theme. -->
+        <style name="Theme.SmartQuizApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+            <!-- Primary brand color. -->
+            <item name="colorPrimary">#3F51B5</item>
+            <item name="colorPrimaryVariant">#303F9F</item>
+            <item name="colorOnPrimary">@android:color/white</item>
+            <!-- Secondary brand color. -->
+            <item name="colorSecondary">#FF4081</item>
+            <item name="colorOnSecondary">@android:color/black</item>
+            <!-- Status bar color. -->
+            <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        </style>
+
+
 </resources>

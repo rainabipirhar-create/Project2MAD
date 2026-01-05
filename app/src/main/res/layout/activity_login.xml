@@ -38,9 +38,18 @@
         android:minHeight="48dp"
         android:background="@android:color/white"
         android:padding="12dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:textColor="@android:color/black"
         android:textColorHint="@color/jazzcash_gray"/>
+
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password?"
+        android:layout_gravity="end"
+        android:layout_marginBottom="24dp"
+        android:textColor="?attr/colorPrimary"/>
 
     <Button
         android:id="@+id/btnLogin"

@@ -38,6 +38,11 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this, SignupActivity.class));
         });
 
+        // Handle Forgot Password Click
+        binding.tvForgotPassword.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+        });
+
         // Handle Login Button Click
         binding.btnLogin.setOnClickListener(v -> loginUser());
     }
