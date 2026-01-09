@@ -9,12 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myproject2.databinding.ActivityLoginBinding;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
-    private FirebaseAuth mAuth; // Firebase helper
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,28 +21,19 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        // Check if user is already logged in (Session Management)
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            // User is already logged in, go straight to Main
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            finish();
-        }
-
-        // Handle Signup Link Click
+        // Handle "Go to Signup" click
         binding.tvGoToSignup.setOnClickListener(v -> {
-            startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+            startActivity(new Intent(this, SignupActivity.class));
         });
 
-        // Handle Forgot Password Click
+        // Handle "Forgot Password" click
         binding.tvForgotPassword.setOnClickListener(v -> {
-            startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+            startActivity(new Intent(this, ForgotPasswordActivity.class));
         });
 
-        // Handle Login Button Click
+        // Handle Login button click
         binding.btnLogin.setOnClickListener(v -> loginUser());
     }
 
@@ -51,27 +41,20 @@ public class LoginActivity extends AppCompatActivity {
         String email = binding.etLoginEmail.getText().toString().trim();
         String password = binding.etLoginPassword.getText().toString().trim();
 
-        // Validation
-        if (TextUtils.isEmpty(email)) {
-            binding.etLoginEmail.setError("Email is required");
-            return;
-        }
-        if (TextUtils.isEmpty(password)) {
-            binding.etLoginPassword.setError("Password is required");
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Email and password are required", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Firebase Login Call
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         // Success: Go to Main Activity
-                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish(); // Close Login activity so back button doesn't return here
+                        startActivity(new Intent(this, MainActivity.class));
+                        finishAffinity(); // Clear all previous activities
                     } else {
                         // Failure
-                        Toast.makeText(LoginActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }
