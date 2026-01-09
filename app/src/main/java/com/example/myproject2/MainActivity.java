@@ -37,18 +37,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // --- 2. Auth Check ---
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
             finish();
             return;
         }
 
         // --- 3. Dashboard Clicks ---
         binding.cardScanQR.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, QRScannerActivity.class));
+            startActivity(new Intent(this, QRScannerActivity.class));
         });
 
         binding.cardAIChat.setOnClickListener(v -> {
-            Toast.makeText(this, "AI Chatbot Coming Soon!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, ChatActivity.class));
         });
 
         binding.cardUserChat.setOnClickListener(v -> {
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_logout) {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
             finish();
         }
 
