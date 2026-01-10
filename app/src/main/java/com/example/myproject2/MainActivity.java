@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // --- 3. Initialize AdMob & Load Ads ---
         MobileAds.initialize(this, initializationStatus -> {
             loadBannerAd();
-            loadInterstitialAd();
+            loadInterstitialAd(); // Pre-load the interstitial ad
         });
 
         // --- 4. Dashboard Clicks ---
@@ -76,23 +76,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void loadInterstitialAd() {
         AdRequest adRequest = new AdRequest.Builder().build();
-        // Use test ad unit ID for development. Replace with your own in production.
         InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest,
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                         mInterstitialAd = interstitialAd;
-                        Log.i(TAG, "onAdLoaded: Interstitial Ad loaded successfully.");
+                        Log.i(TAG, "onAdLoaded: Interstitial Ad is ready.");
                         mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                             @Override
                             public void onAdDismissedFullScreenContent() {
                                 // Called when the ad is dismissed.
+                                // Load the next ad for the next click.
+                                loadInterstitialAd();
                                 navigateToChatActivity();
                             }
 
                             @Override
                             public void onAdFailedToShowFullScreenContent(AdError adError) {
-                                // Called when ad fails to show.
                                 Log.e(TAG, "Ad failed to show: " + adError.getMessage());
                                 navigateToChatActivity(); // Navigate even if ad fails
                             }

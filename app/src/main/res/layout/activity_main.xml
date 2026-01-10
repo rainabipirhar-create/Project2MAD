@@ -20,7 +20,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/jazz_black"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="JazzCash Quiz"
+            app:title="JazzCash Dashboard"
             app:titleTextColor="@color/jazz_yellow"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
