@@ -26,16 +26,9 @@ public class ChatActivity extends AppCompatActivity {
     private List<Message> messageList;
     private ChatAdapter chatAdapter;
 
-    // API Configuration - **IMPORTANT: DO NOT SHIP WITH HARDCODED KEYS**
-
-    // private static final String API_KEY = "My api key";
-
-
-    private static final String API_KEY = "AIzaSyD3qvGO6CHMeoN8PQv3vkq4rbLbZaCmoEc";
-
+    // API Configuration
+    private static final String API_KEY = "YOUR API KEY";
     private static final String API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + API_KEY;
-
-
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     OkHttpClient client = new OkHttpClient();
 

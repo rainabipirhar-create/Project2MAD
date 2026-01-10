@@ -64,6 +64,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             showInterstitialAd();
         });
 
+        binding.cardHuggingFace.setOnClickListener(v -> {
+            startActivity(new Intent(this, HuggingFaceActivity.class));
+        });
+
         binding.cardUserChat.setOnClickListener(v -> {
             startActivity(new Intent(this, CustomerSupportActivity.class));
         });

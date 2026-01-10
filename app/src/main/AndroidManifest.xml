@@ -56,6 +56,10 @@
         <activity
             android:name=".CustomerSupportActivity"
             android:exported="false"/>
+            
+        <activity
+            android:name=".HuggingFaceActivity"
+            android:exported="false"/>
 
         <activity
             android:name=".CaptureAct"

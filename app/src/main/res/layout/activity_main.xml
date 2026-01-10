@@ -20,7 +20,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/jazz_black"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="JazzCash Dashboard"
+            app:title="JazzCash Quiz"
             app:titleTextColor="@color/jazz_yellow"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
@@ -45,7 +45,7 @@
                     android:textColor="@color/black"
                     android:layout_marginBottom="12dp"/>
 
-                <!-- Feature 3: QR Scanner Button -->
+                <!-- QR Scanner Button -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardScanQR"
                     android:layout_width="match_parent"
@@ -101,7 +101,7 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Feature 4: AI Chatbot -->
+                <!-- AI Help Desk (Gemini) -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardAIChat"
                     android:layout_width="match_parent"
@@ -157,13 +157,70 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Feature 6: Community Chat -->
+                <!-- Hugging Face Chat -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardHuggingFace"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    android:layout_marginBottom="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="20dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@android:drawable/ic_menu_gallery"
+                            app:tint="@color/jazz_black"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/hugging_face_chat"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/hugging_face_description"
+                                android:textSize="14sp"
+                                android:textColor="#757575"/>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_media_play"
+                            app:tint="@color/jazz_yellow"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Customer Support Chat -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardUserChat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp"
+                    android:layout_marginBottom="16dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground">

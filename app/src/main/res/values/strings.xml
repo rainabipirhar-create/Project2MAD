@@ -11,4 +11,8 @@
     <string name="ask_gemini_ai">Ask Gemini AI</string>
     <string name="customer_support">Customer Support</string>
     <string name="customer_support_description">Chat with support person</string>
+
+    <!-- Hugging Face Strings (Updated) -->
+    <string name="hugging_face_chat">Hugging Face Image Model</string>
+    <string name="hugging_face_description">Classify an image</string>
 </resources>
