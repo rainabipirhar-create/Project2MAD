@@ -18,12 +18,12 @@
         android:theme="@style/Theme.MyProject2"
         tools:targetApi="31">
 
-        <!-- AdMob App ID - REPLACE WITH YOUR OWN -->
+        <!-- AdMob App ID -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713"/>
 
-        <!-- 1. Signup Activity (Launcher) -->
+        <!-- ACTIVITIES -->
         <activity
             android:name=".SignupActivity"
             android:exported="true">
@@ -33,32 +33,30 @@
             </intent-filter>
         </activity>
 
-        <!-- 2. Login Activity -->
         <activity
             android:name=".LoginActivity"
             android:exported="false"/>
 
-        <!-- 3. Main Dashboard -->
         <activity
             android:name=".MainActivity"
             android:exported="false"/>
 
-        <!-- 4. Forgot Password -->
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false"/>
 
-        <!-- 5. QR Scanner Activity -->
         <activity
             android:name=".QRScannerActivity"
             android:exported="false"/>
 
-        <!-- 6. Chat Activity -->
         <activity
             android:name=".ChatActivity"
             android:exported="false"/>
+        
+        <activity
+            android:name=".CustomerSupportActivity"
+            android:exported="false"/>
 
-        <!-- 7. Capture Activity (Needed for the Camera to open) -->
         <activity
             android:name=".CaptureAct"
             android:screenOrientation="portrait"

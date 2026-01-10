@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         binding.cardUserChat.setOnClickListener(v -> {
-            Toast.makeText(this, "User Chat Coming Soon!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, CustomerSupportActivity.class));
         });
     }
 
