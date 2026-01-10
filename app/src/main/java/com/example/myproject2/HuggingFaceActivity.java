@@ -37,7 +37,7 @@ public class HuggingFaceActivity extends AppCompatActivity {
 
     // --- Hugging Face API Configuration for Image Classification ---
     private static final String HF_API_URL = "https://router.huggingface.co/hf-inference/models/google/vit-base-patch16-224";
-    private static final String HF_API_KEY = "YOUR API KEY";
+    private static final String HF_API_KEY = "MY API";
     public static final MediaType IMAGE = MediaType.get("image/jpeg");
     private final OkHttpClient client = new OkHttpClient();
 

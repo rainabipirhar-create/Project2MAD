@@ -1,14 +1,20 @@
 package com.example.myproject2;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 
 import com.example.myproject2.databinding.ActivityMainBinding;
@@ -19,8 +25,11 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,6 +37,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActivityMainBinding binding;
     private ActionBarDrawerToggle toggle;
     private InterstitialAd mInterstitialAd;
+
+    // --- Declare the launcher for the notification permission ---
+    private final ActivityResultLauncher<String> requestPermissionLauncher = 
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+        if (isGranted) {
+            Toast.makeText(this, "Notifications permission granted", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Notifications permission denied", Toast.LENGTH_SHORT).show();
+        }
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +73,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             loadBannerAd();
             loadInterstitialAd(); // Pre-load the interstitial ad
         });
+        
+        // --- 4. Request Notification Permission ---
+        askNotificationPermission();
 
-        // --- 4. Dashboard Clicks ---
+        // --- 5. Get and Log FCM Token ---
+        getFCMToken();
+
+        // --- 6. Dashboard Clicks ---
         binding.cardScanQR.setOnClickListener(v -> {
             startActivity(new Intent(this, QRScannerActivity.class));
         });
@@ -71,6 +96,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.cardUserChat.setOnClickListener(v -> {
             startActivity(new Intent(this, CustomerSupportActivity.class));
         });
+    }
+
+    private void askNotificationPermission() {
+        // This is only necessary for API level 33 and higher.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
+                    PackageManager.PERMISSION_GRANTED) {
+                // FCM SDK (and your app) can post notifications.
+            } else {
+                // Directly ask for the permission.
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+            }
+        }
+    }
+
+    private void getFCMToken() {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                        return;
+                    }
+                    String token = task.getResult();
+                    String msg = "FCM Registration Token: " + token;
+                    Log.d(TAG, msg);
+                    Toast.makeText(MainActivity.this, "FCM Token Copied to Logcat", Toast.LENGTH_SHORT).show();
+                });
     }
 
     private void loadBannerAd() {
@@ -89,23 +141,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                             @Override
                             public void onAdDismissedFullScreenContent() {
-                                // Called when the ad is dismissed.
-                                // Load the next ad for the next click.
                                 loadInterstitialAd();
                                 navigateToChatActivity();
                             }
 
                             @Override
                             public void onAdFailedToShowFullScreenContent(AdError adError) {
-                                Log.e(TAG, "Ad failed to show: " + adError.getMessage());
-                                navigateToChatActivity(); // Navigate even if ad fails
+                                navigateToChatActivity();
                             }
                         });
                     }
 
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        Log.e(TAG, "onAdFailedToLoad: " + loadAdError.getMessage());
                         mInterstitialAd = null;
                     }
                 });
@@ -115,8 +163,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (mInterstitialAd != null) {
             mInterstitialAd.show(this);
         } else {
-            Log.d(TAG, "The interstitial ad wasn't ready yet.");
-            navigateToChatActivity(); // Navigate directly if ad not ready
+            navigateToChatActivity();
         }
     }
 

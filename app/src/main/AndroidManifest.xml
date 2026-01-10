@@ -5,6 +5,7 @@
     <!-- PERMISSIONS -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-feature android:name="android.hardware.camera" />
 
     <application
@@ -33,34 +34,22 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false"/>
+        <!-- FCM Service -->
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"/>
-
-        <activity
-            android:name=".ForgotPasswordActivity"
-            android:exported="false"/>
-
-        <activity
-            android:name=".QRScannerActivity"
-            android:exported="false"/>
-
-        <activity
-            android:name=".ChatActivity"
-            android:exported="false"/>
-        
-        <activity
-            android:name=".CustomerSupportActivity"
-            android:exported="false"/>
-            
-        <activity
-            android:name=".HuggingFaceActivity"
-            android:exported="false"/>
-
+        <activity android:name=".LoginActivity" android:exported="false"/>
+        <activity android:name=".MainActivity" android:exported="false"/>
+        <activity android:name=".ForgotPasswordActivity" android:exported="false"/>
+        <activity android:name=".QRScannerActivity" android:exported="false"/>
+        <activity android:name=".ChatActivity" android:exported="false"/>
+        <activity android:name=".CustomerSupportActivity" android:exported="false"/>
+        <activity android:name=".HuggingFaceActivity" android:exported="false"/>
         <activity
             android:name=".CaptureAct"
             android:screenOrientation="portrait"
