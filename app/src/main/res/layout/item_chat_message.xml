@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <!-- AI Message (Left - Grey) -->
+    <TextView
+        android:id="@+id/tvLeftChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AI Response"
+        android:background="#E0E0E0"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_gravity="start"
+        android:visibility="gone"
+        android:maxWidth="280dp"
+        android:layout_marginBottom="4dp"/>
+
+    <!-- User Message (Right - Jazz Black) -->
+    <TextView
+        android:id="@+id/tvRightChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Message"
+        android:background="@color/jazz_black"
+        android:padding="12dp"
+        android:textColor="@color/jazz_yellow"
+        android:textSize="16sp"
+        android:layout_gravity="end"
+        android:visibility="gone"
+        android:maxWidth="280dp"
+        android:layout_marginBottom="4dp"/>
+
+</LinearLayout>

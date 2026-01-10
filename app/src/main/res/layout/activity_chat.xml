@@ -4,29 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ECE5DD"
+    android:background="@color/jazz_grey_bg"
     tools:context=".ChatActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="@color/jazz_black"
         app:title="AI Assistant"
-        app:titleTextColor="@android:color/white"/>
+        app:titleTextColor="@color/jazz_yellow" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/bottom_layout"
         android:layout_below="@id/toolbar"
-        android:layout_above="@id/bottom_layout" />
+        android:padding="8dp" />
 
     <LinearLayout
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:elevation="8dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="10dp">
 
@@ -35,18 +39,22 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@android:color/transparent"
             android:hint="Type a message..."
-            android:background="@android:color/white"
-            android:padding="12dp"
-            android:minHeight="48dp"/>
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLines="5"
+            android:minHeight="48dp"
+            android:padding="12dp" />
 
         <ImageButton
             android:id="@+id/send_button"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Send"
             android:src="@android:drawable/ic_menu_send"
-            android:background="?attr/colorPrimary"
-            android:layout_marginStart="10dp"/>
+            app:tint="@color/jazz_black" />
 
     </LinearLayout>
 

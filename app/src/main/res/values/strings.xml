@@ -3,4 +3,12 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <!-- Main Activity Strings -->
+    <string name="quick_actions">Quick Actions</string>
+    <string name="scan_qr">Scan QR</string>
+    <string name="scan_qr_description">Make Payments From QR Now</string>
+    <string name="ai_help_desk">AI Help Desk</string>
+    <string name="ask_gemini_ai">Ask Gemini AI</string>
+    <string name="customer_support">Customer Support</string>
+    <string name="customer_support_description">Chat with support person</string>
 </resources>

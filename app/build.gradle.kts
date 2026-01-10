@@ -52,5 +52,5 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.zxing.android.embedded)
     implementation(libs.zxing.core)
-
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }
