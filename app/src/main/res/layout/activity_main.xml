@@ -9,26 +9,26 @@
     tools:context=".MainActivity">
 
     <!-- MAIN CONTENT -->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/jazz_grey_bg">
+        android:layout_height="match_parent">
 
-        <!-- Toolbar (Black with Yellow Text) -->
+        <!-- Toolbar -->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/jazz_black"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:titleTextColor="@color/jazz_yellow"
             app:title="JazzCash Quiz"
+            app:titleTextColor="@color/jazz_yellow"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            android:layout_above="@+id/adView">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,7 +45,7 @@
                     android:textColor="@color/black"
                     android:layout_marginBottom="12dp"/>
 
-                <!-- Feature 3: QR Scanner Button (Yellow Card) -->
+                <!-- Feature 3: QR Scanner Button -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardScanQR"
                     android:layout_width="match_parent"
@@ -53,7 +53,6 @@
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp"
                     android:layout_marginBottom="16dp"
-                    app:cardBackgroundColor="@color/white"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground">
@@ -65,7 +64,6 @@
                         android:padding="20dp"
                         android:gravity="center_vertical">
 
-                        <!-- Icon with Jazz Yellow tint -->
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
@@ -95,7 +93,6 @@
                                 android:textColor="#757575"/>
                         </LinearLayout>
 
-                        <!-- Arrow Indicator -->
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
@@ -217,7 +214,20 @@
 
             </LinearLayout>
         </ScrollView>
-    </LinearLayout>
+
+        <!-- AdMob Banner Ad -->
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        </com.google.android.gms.ads.AdView>
+
+    </RelativeLayout>
 
     <!-- NAVIGATION DRAWER -->
     <com.google.android.material.navigation.NavigationView
